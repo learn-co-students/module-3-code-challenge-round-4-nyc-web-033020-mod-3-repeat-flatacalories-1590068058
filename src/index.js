@@ -1,11 +1,11 @@
 const url = "http://localhost:3000/characters"
 const dropdown = document.getElementById("character-names")
 const characterDiv = document.querySelector("#detailed-info")
-console.log(characterDiv)
+const form = document.getElementById("calories-form")
 document.addEventListener("DOMContentLoaded", () => {
     getCharacters()
     handleDropdown()
-    handleClick()
+    // handleClick()
 })
 
 const getCharacters = () => {
@@ -38,14 +38,30 @@ const renderCharacter = (character) => {
     const name = document.getElementById("name")
     const image = document.getElementById("image")
     const calories = document.getElementById("calories")
+
     name.innerText = `${character.name}`
     image.src = `${character.image}`
     calories.innerText = `${character.calories}`
-}
-
-const handleClick = () => {
-    document.addEventListener("submit", e => {
+    form.addEventListener("submit", e => {
         e.preventDefault()
-        console.log("hi")
+        
+        form.value = `${character.id}`
+        newCalories = e.target.value
+    
+        // fetch(`http://localhost:3000/characters/${id}` , {
+        //     method: "PATCH",
+        //     headers: {
+        //         "Content-Type": "application/json",
+        //         "Accept": "application/json"
+        //     },
+        //     body: JSON.stringify({
+        //         "calories": newCalories
+        //     })
+        // })
+        // .then(res => res.json())
+        // .then(console.log)
     })
 }
+
+
+  
